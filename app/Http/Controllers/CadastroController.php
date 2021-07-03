@@ -9,16 +9,17 @@ class CadastroController extends Controller
 {
     public function store(Request $request)
     {
-        $validacao = Validator::make($request->except('_token'),
-            [
-                "curso" => ['required', 'max:100'],
-                "carga" => ['required', 'integer']
-            ]
-        );
+        $request->validate([
+            "curso" => ['required', 'max:100'],
+            "carga" => ['required', 'integer']
+        ]);
 
-        if($validacao->fails()) {
-            return redirect()->back()->withInput()->withErrors($validacao);
-        }
+        // Validator::make($request->except('_token'),
+        //     [
+        //         "curso" => ['required', 'max:100'],
+        //         "carga" => ['required', 'integer']
+        //     ]
+        // )->validate();
 
         dd('cheguei aqui');
     }
