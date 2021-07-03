@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CursoPHP;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CursoRequest extends FormRequest
@@ -24,12 +25,7 @@ class CursoRequest extends FormRequest
     public function rules()
     {
         return [
-            "curso" => ['required', 'max:100', 
-            function($atributo, $valor, $falhou){
-                if ($valor === 'PHP') {
-                    $falhou('O campo ' . $atributo . ' não pode ter o valor PHP');
-                }
-            }],
+            "curso" => ['required', 'max:100', new CursoPHP],
             "carga" => ['required', 'integer']
         ];
     }
