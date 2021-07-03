@@ -7,11 +7,26 @@
     <title>Document</title>
 </head>
 <body>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="{{ route('store') }}" method="post">
         @csrf
 
         <label for="curso">Curso: </label>
-        <input type="text" name="curso">
+        <input type="text" name="curso" value="{{ old('curso') }}">
+        <br>
+
+        <label for="carga">Carga: </label>
+        <input type="text" name="carga" value="{{ old('carga') }}">
+        <br>
 
         <button type="submit">Enviar</button>
     </form>
