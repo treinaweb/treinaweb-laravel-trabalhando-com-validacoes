@@ -24,7 +24,12 @@ class CursoRequest extends FormRequest
     public function rules()
     {
         return [
-            "curso" => ['required', 'max:100'],
+            "curso" => ['required', 'max:100', 
+            function($atributo, $valor, $falhou){
+                if ($valor === 'PHP') {
+                    $falhou('O campo ' . $atributo . ' não pode ter o valor PHP');
+                }
+            }],
             "carga" => ['required', 'integer']
         ];
     }
