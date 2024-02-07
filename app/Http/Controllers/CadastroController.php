@@ -24,4 +24,28 @@ class CadastroController extends Controller
 
         dd($request->all());
     }
+
+    public function storeApi(Request $request)
+    {
+        // $validacao = Validator::make(
+        //     $request->all(),
+        //     [
+        //         "curso" => ['required', 'max:100'],
+        //         "carga" => ['required', 'integer']
+        //     ]
+        // );
+
+        // if ($validacao->fails()) {
+        //     $mensagemErros = $validacao->errors();
+
+        //     return $mensagemErros->all();
+        // }
+
+        $request->validate([
+            "curso" => ['required', 'max:100'],
+            "carga" => ['required', 'integer']
+        ]);
+
+        var_dump('Passou na validação');
+    }
 }
